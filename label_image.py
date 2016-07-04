@@ -20,10 +20,10 @@ def getPrediction(image_path):
 
     # Loads label file, strips off carriage return
     label_lines = [line.rstrip() for line 
-                       in tf.gfile.GFile("/tf_files/retrained_labels_v3.txt")]
+                       in tf.gfile.GFile("./retrained_labels_v3.txt")]
 
     # Unpersists graph from file
-    with tf.gfile.FastGFile("/tf_files/retrained_graph_v3.pb", 'rb') as f:
+    with tf.gfile.FastGFile("./retrained_graph_v3.pb", 'rb') as f:
         graph_def = tf.GraphDef()
         graph_def.ParseFromString(f.read())
         _ = tf.import_graph_def(graph_def, name='')
