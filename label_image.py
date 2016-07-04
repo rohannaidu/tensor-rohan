@@ -9,7 +9,7 @@ image_path = sys.argv[1]
 # Write to CSV
 def writeCSV(image_path_fn, predicted_label_for_test_fn):
     filename, file_extension = os.path.splitext(os.path.basename(image_path_fn))
-    line_to_write = '%s, %s \n' % (filename, predicted_label_for_test_fn) 
+    line_to_write = '%s,ds \n' % (filename, predicted_label_for_test_fn) 
     fd = open('./tf_submission.csv', 'a')
     fd.write(line_to_write)
     fd.close()
@@ -47,15 +47,15 @@ def getPrediction(image_path):
         top_k = top_k.astype(np.int32)
         if top_k[0] == 3 or top_k[0] == 0:
 	    predicted_label_for_test = top_k[0] + 1
-#            print '%s, %s' % (os.path.basename(image_path), predicted_label_for_test)
+            print 'Prediction for this image %s is %s' % (os.path.basename(image_path), predicted_label_for_test)
 	    writeCSV(image_path, predicted_label_for_test)
         elif top_k[0] == 2:
 	    predicted_label_for_test = 2
-#	    print '%s, %s' % (os.path.basename(image_path), predicted_label_for_test)
+	    print 'Prediction for this image %s is %s' % (os.path.basename(image_path), predicted_label_for_test)
             writeCSV(image_path, predicted_label_for_test)
         elif top_k[0] == 1:
 	    predicted_label_for_test = 3
-#	    print '%s, %s' % (os.path.basename(image_path), predicted_label_for_test)
+	    print 'Prediction for this image %s is %s' % (os.path.basename(image_path), predicted_label_for_test)
             writeCSV(image_path, predicted_label_for_test)
 
 
