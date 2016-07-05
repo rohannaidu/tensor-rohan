@@ -9,7 +9,7 @@ image_path = sys.argv[1]
 # Write to CSV
 def writeCSV(image_path_fn, predicted_label_for_test_fn):
     filename, file_extension = os.path.splitext(os.path.basename(image_path_fn))
-    line_to_write = '%s,ds \n' % (filename, predicted_label_for_test_fn) 
+    line_to_write = '%s,%s \n' % (filename, predicted_label_for_test_fn) 
     fd = open('./tf_submission.csv', 'a')
     fd.write(line_to_write)
     fd.close()
